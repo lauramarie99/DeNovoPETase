@@ -1,11 +1,9 @@
 # make sure that REMARK lines are loaded
 -run::preserve_header
--extra_res_fa /home/iwe28/Documents/Design/Utils/ligand/TI1/2PE_2.params /home/iwe28/Documents/Design/Utils/params/HIS_P.params /home/iwe28/Documents/Design/Utils/params/SEX.params
-# favor unbound rotamers from imported pdb file
-# -unboundrot ../proteins/TI1/7nei_A_prot_clean_TI1_2PE.pdb
+-extra_res_fa ../Ligand/TI1/2PE_2.params ../Protein/HIS_P.params ../Protein/SEX.params
 -ignore_zero_occupancy false
 -nstruct 10
--enzdes::cstfile /home/iwe28/Documents/Design/Utils/constraints/PHL7_2PE_strict_TI1_v2.cst
+-enzdes::cstfile ../Constraints/PHL7_2PE_strict_TI1_v2.cst
 -enzdes::detect_design_interface
 -enzdes::cut1 6.0
 -enzdes::cut2 8.0
