@@ -3,5 +3,5 @@
 -relax:fast				                      # Do a small cycle number fast relax
 -relax:constrain_relax_to_start_coords	# Add coordinate constraints to backbone heavy atoms, based on the input structure.
 -ignore_zero_occupancy false
--extra_res_fa /home/iwe28/Documents/Design/Utils/params/HIS_P.params
+-extra_res_fa ../Protein/HIS_P.params
 -scorefile relax.fasc
