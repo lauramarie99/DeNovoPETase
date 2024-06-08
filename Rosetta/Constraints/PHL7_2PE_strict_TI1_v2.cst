@@ -1,0 +1,68 @@
+# cst constraint descriptor for esterase active site featuring a 
+# a ser/his/asp catalytic triad and a backbone oxyanion hole
+
+#block 1 for serine interacting with substrate
+
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: O6 C9 O5
+  TEMPLATE::   ATOM_MAP: 1 residue3: 2PE
+
+  TEMPLATE::   ATOM_MAP: 2 atom_name: CB
+  TEMPLATE::   ATOM_MAP: 2 residue3: SEX 
+ 
+  CONSTRAINT:: distanceAB:    1.4   0.10 500.00  1
+  CONSTRAINT::    angle_A:  112.0   5.00 100.00  360.00 
+CST::END
+
+#block 2 for histidine interacting with substrate
+
+CST::BEGIN  
+  TEMPLATE::   ATOM_MAP: 1 atom_name: O4 C9 C8
+  TEMPLATE::   ATOM_MAP: 1 residue3: 2PE
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: Hpol ,
+  TEMPLATE::   ATOM_MAP: 2 residue3: HIP 
+ 
+  CONSTRAINT:: distanceAB:    1.93   0.78 100.00  0
+CST::END
+
+
+#block 3: for enforcing the his-asp interaction
+
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_type: Hpol  ,
+  TEMPLATE::   ATOM_MAP: 1 residue3: HIP
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: OOC ,
+  TEMPLATE::   ATOM_MAP: 2 residue1: D
+
+  CONSTRAINT:: distanceAB:    1.39   0.60 100.00  0
+CST::END
+
+
+#block 4 for bb-H oxyanion hole 1
+
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: O5 C9 O4
+  TEMPLATE::   ATOM_MAP: 1 residue3: 2PE
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: HNbb ,
+  TEMPLATE::   ATOM_MAP: 2 residue1: MGY
+
+  CONSTRAINT:: distanceAB:    2.25   0.34  50.00  0
+  CONSTRAINT::    angle_A:  135.00  40.00  50.00  360.00
+CST::END
+
+
+#block 5 for bb-H oxyanion hole 2
+
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: O5 C9 O4
+  TEMPLATE::   ATOM_MAP: 1 residue3: 2PE
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: HNbb ,
+  TEMPLATE::   ATOM_MAP: 2 residue1: FY
+
+  CONSTRAINT:: distanceAB:    2.00   0.30  50.00  0
+  CONSTRAINT::    angle_A:  135.00  40.00  50.00  360.00
+CST::END
