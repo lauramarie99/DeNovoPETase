@@ -1,0 +1,34 @@
+<ROSETTASCRIPTS> 
+      <SCOREFXNS>
+              <ScoreFunction name="myscore" weights="enzdes.wts"/> Read the enzdes.wts score function from the Rosetta database
+      </SCOREFXNS>
+      <SCORINGGRIDS ligand_chain="X" width="20.0">
+	      <ClassicGrid grid_name="dock_grid" weight="1.0"/>
+      </SCORINGGRIDS>
+      <MOVERS>
+              <Transform name="predock" chain="X" box_size="2.0" move_distance="0.2" angle="20" cycles="500" repeats="3" temperature="5"/>
+              <AddOrRemoveMatchCsts name="cstadd" cst_instruction="add_new"/> add catalytic constraints 
+              <EnzRepackMinimize name="cstopt" cst_opt="1" minimize_rb="1" minimize_sc="1" minimize_bb="1"/> 
+              <EnzRepackMinimize name="repack" design="0" repack_only="1" scorefxn_minimize="myscore" scorefxn_repack="myscore" minimize_rb="1" minimize_sc="1" minimize_bb="1" cycles="1"/>
+              <EnzRepackMinimize name="fin_min" repack_only="0" design="0" scorefxn_minimize="myscore" scorefxn_repack="myscore" minimize_rb="1" minimize_sc="1" minimize_bb="1" cycles="1"/> 
+              <EnzRepackMinimize name="fin_rpkmin" repack_only="1" design="0" scorefxn_minimize="myscore" scorefxn_repack="myscore" minimize_rb="1" minimize_sc="1" minimize_bb="1" cycles="1"/> 
+              <AddOrRemoveMatchCsts name="cstrem" cst_instruction="remove" keep_covalent="1"/> remove constraints
+              <AddOrRemoveMatchCsts name="cstfinadd" cst_instruction="add_pregenerated"/> add the last set of constraints added just prior to removing them (used for scoring typically at the end of the trajectory)
+              <InterfaceScoreCalculator name="add_scores" chains="X" scorefxn="myscore"/> 
+              <ParsedProtocol name="dock_repack">
+                <Add mover="predock"/>
+                <Add mover="cstopt"/>
+                <Add mover="repack"/>
+              </ParsedProtocol>
+              <GenericMonteCarlo name="docking" mover_name="dock_repack" scorefxn_name="myscore" trials="3" sample_type="low" temperature="0.6" drift="1"/>
+      </MOVERS>
+      <PROTOCOLS>
+              <Add mover_name="cstadd"/>
+              <Add mover_name="docking"/>
+              <Add mover_name="cstrem"/>
+              <Add mover_name="fin_min"/>
+              <Add mover_name="fin_rpkmin"/>
+              <Add mover_name="cstfinadd"/>
+              <Add mover_name="add_scores"/>
+      </PROTOCOLS>
+</ROSETTASCRIPTS>

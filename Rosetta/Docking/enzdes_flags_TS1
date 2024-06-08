@@ -1,0 +1,16 @@
+# make sure that REMARK lines are loaded
+-run::preserve_header
+-extra_res_fa /home/iwe28/Documents/Design/Utils/ligand/TS1/2PE_2.params
+# favor unbound rotamers from imported pdb file
+# -unboundrot ../proteins/TS1/7nei_A_prot_clean_TS1_2PE.pdb
+-ignore_zero_occupancy false
+-nstruct 10
+-enzdes::cstfile /home/iwe28/Documents/Design/Utils/constraints/PHL7_2PE_strict_TS1_v2.cst
+-enzdes::detect_design_interface
+-enzdes::cut1 6.0
+-enzdes::cut2 8.0
+-enzdes::cut3 10.0
+-enzdes::cut4 12.0
+-mute core.io.database
+# extra scoring information
+-jd2::enzdes_out
