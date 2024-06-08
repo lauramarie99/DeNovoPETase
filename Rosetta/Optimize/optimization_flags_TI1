@@ -1,0 +1,4 @@
+-run::preserve_header
+-extra_res_fa /home/iwe28/Documents/Design/Utils/ligand/TI1/2PE_2.params /home/iwe28/Documents/Design/Utils/params/HIS_P.params /home/iwe28/Documents/Design/Utils/params/SEX.params
+-ignore_zero_occupancy false
+-nstruct 50

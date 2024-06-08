@@ -1,0 +1,14 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="myscore" weights="ref2015.wts"/>
+    </SCOREFXNS>
+	<TASKOPERATIONS>
+		<ReadResfile name="rrf" filename="design.resfile"/>
+	</TASKOPERATIONS>
+	<MOVERS>
+		<PackRotamersMover name="design" scorefxn="myscore" task_operations="rrf" />
+	</MOVERS>
+	<PROTOCOLS>
+		<Add mover="design" />
+	</PROTOCOLS>
+</ROSETTASCRIPTS>
